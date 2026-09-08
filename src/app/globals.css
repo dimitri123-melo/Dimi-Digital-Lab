@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-zinc-200 dark:border-zinc-800;
+  }
+
+  html {
+    @apply scroll-smooth;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-zinc-50 text-zinc-900 dark:bg-surface dark:text-white antialiased transition-colors duration-200;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    @apply bg-brand-blue/20 text-brand-blue-dark dark:bg-brand-blue/30 dark:text-white;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-zinc-100 dark:bg-surface;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-zinc-300 dark:bg-zinc-700 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-zinc-400 dark:bg-zinc-600;
+  }
+
+  /* Focus styles */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand-blue;
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply py-20 md:py-28 lg:py-36;
+  }
+
+  .container-main {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-brand-blue to-brand-blue-light bg-clip-text text-transparent;
+  }
+
+  .glass {
+    @apply bg-white/85 dark:bg-surface/85 backdrop-blur-xl border-b border-zinc-200/80 dark:border-zinc-800/50 shadow-sm dark:shadow-none;
+  }
+
+  /* Theme-aware card backgrounds */
+  .card-surface {
+    @apply bg-white dark:bg-surface-50 border border-zinc-200/80 dark:border-zinc-800/50 shadow-sm dark:shadow-none transition-all duration-300;
+  }
+
+  .card-surface-hover {
+    @apply hover:border-brand-blue/50 dark:hover:border-zinc-700 hover:shadow-md dark:hover:shadow-none;
+  }
+
+  /* Proof presentation container */
+  .proof-container {
+    @apply relative overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900/80;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Skip navigation link */
+.skip-nav {
+  @apply absolute -top-full left-4 z-[100] bg-brand-blue text-white px-4 py-2 rounded-b-lg transition-all;
+}
+.skip-nav:focus {
+  @apply top-0;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
