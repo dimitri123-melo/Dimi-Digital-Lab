@@ -31,7 +31,7 @@ export default function Footer() {
           {/* Brand Identity */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-3">
-              <div className="relative w-9 h-9 rounded-xl overflow-hidden border border-zinc-200 dark:border-zinc-800 shadow-sm bg-black p-0.5">
+              <div className="relative w-9 h-9 rounded-xl overflow-hidden border border-zinc-300 dark:border-zinc-800 shadow-sm bg-black p-0.5">
                 <Image
                   src="/icon.png"
                   alt="DIMI DIGITAL LAB"
@@ -39,17 +39,17 @@ export default function Footer() {
                   className="object-contain"
                 />
               </div>
-              <span className="font-heading font-bold tracking-wider text-base text-zinc-900 dark:text-white">
+              <span className="font-heading font-extrabold tracking-wider text-base text-zinc-950 dark:text-white">
                 DIMI DIGITAL LAB
               </span>
             </div>
-            <p className="text-brand-blue text-xs tracking-wider uppercase font-semibold font-mono">
+            <p className="text-brand-blue text-xs tracking-wider uppercase font-bold font-mono">
               {t.footer.slogan}
             </p>
-            <p className="text-zinc-600 dark:text-zinc-400 text-xs sm:text-sm mt-1 leading-relaxed">
+            <p className="text-zinc-700 dark:text-zinc-300 text-xs sm:text-sm mt-1 leading-relaxed font-normal">
               {t.footer.tagline}
             </p>
-            <div className="flex items-center gap-2 text-xs font-medium text-brand-blue mt-1">
+            <div className="flex items-center gap-2 text-xs font-semibold text-brand-blue mt-1">
               <Globe size={14} />
               <span>{t.footer.cameroonToWorld}</span>
             </div>
@@ -57,7 +57,7 @@ export default function Footer() {
 
           {/* 4 Professional Domains */}
           <div>
-            <h3 className="text-zinc-900 dark:text-zinc-300 text-xs uppercase tracking-wider font-semibold mb-5 font-mono">
+            <h3 className="text-zinc-950 dark:text-white text-xs uppercase tracking-wider font-bold mb-5 font-mono">
               {t.footer.servicesTitle}
             </h3>
             <ul className="flex flex-col gap-2.5">
@@ -65,7 +65,7 @@ export default function Footer() {
                 <li key={domain.id}>
                   <Link
                     href="#services"
-                    className="text-xs text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors"
+                    className="text-xs text-zinc-700 hover:text-black dark:text-zinc-300 dark:hover:text-white transition-colors font-medium"
                   >
                     {domain.title}
                   </Link>
@@ -76,7 +76,7 @@ export default function Footer() {
 
           {/* Navigation */}
           <div>
-            <h3 className="text-zinc-900 dark:text-zinc-300 text-xs uppercase tracking-wider font-semibold mb-5 font-mono">
+            <h3 className="text-zinc-950 dark:text-white text-xs uppercase tracking-wider font-bold mb-5 font-mono">
               {t.footer.navTitle}
             </h3>
             <ul className="flex flex-col gap-2.5">
@@ -84,7 +84,7 @@ export default function Footer() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-xs text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors"
+                    className="text-xs text-zinc-700 hover:text-black dark:text-zinc-300 dark:hover:text-white transition-colors font-medium"
                   >
                     {item.label}
                   </Link>
@@ -95,13 +95,13 @@ export default function Footer() {
 
           {/* Direct Connect */}
           <div>
-            <h3 className="text-zinc-900 dark:text-zinc-300 text-xs uppercase tracking-wider font-semibold mb-5 font-mono">
+            <h3 className="text-zinc-950 dark:text-white text-xs uppercase tracking-wider font-bold mb-5 font-mono">
               {t.footer.connectTitle}
             </h3>
             <div className="flex flex-col gap-3 mb-6">
               <a
                 href="mailto:novaskill237@gmail.com"
-                className="flex items-center gap-2 text-xs text-zinc-600 dark:text-zinc-400 hover:text-brand-blue transition-colors"
+                className="flex items-center gap-2 text-xs text-zinc-800 dark:text-zinc-200 hover:text-brand-blue transition-colors font-semibold"
               >
                 <Mail size={14} className="text-brand-blue" />
                 <span>novaskill237@gmail.com</span>
@@ -110,7 +110,7 @@ export default function Footer() {
                 href="https://wa.me/237682764947"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-xs text-zinc-600 dark:text-zinc-400 hover:text-brand-blue transition-colors"
+                className="flex items-center gap-2 text-xs text-zinc-800 dark:text-zinc-200 hover:text-brand-blue transition-colors font-semibold"
               >
                 <MessageSquare size={14} className="text-brand-blue" />
                 <span>+237 682 76 49 47</span>
@@ -127,7 +127,7 @@ export default function Footer() {
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-8 h-8 rounded-lg bg-zinc-200 dark:bg-surface-200 flex items-center justify-center text-zinc-700 dark:text-zinc-300 hover:bg-brand-blue hover:text-white transition-colors"
+                    className="w-8 h-8 rounded-lg bg-zinc-200 dark:bg-surface-200 flex items-center justify-center text-zinc-800 dark:text-zinc-200 hover:bg-brand-blue hover:text-white transition-colors"
                     aria-label={link.name}
                   >
                     <Icon size={14} />
@@ -139,7 +139,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-zinc-200 dark:border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-zinc-500">
+        <div className="pt-8 border-t border-zinc-200 dark:border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-zinc-600 dark:text-zinc-400 font-semibold">
           <div>
             © {new Date().getFullYear()} DIMI DIGITAL LAB · {t.footer.copyright}
           </div>
@@ -147,7 +147,7 @@ export default function Footer() {
             <span>{t.footer.designedAndBuilt}</span>
             <button
               onClick={scrollToTop}
-              className="w-8 h-8 rounded-lg bg-zinc-200 dark:bg-surface-200 flex items-center justify-center text-zinc-700 dark:text-zinc-300 hover:bg-brand-blue hover:text-white transition-colors"
+              className="w-8 h-8 rounded-lg bg-zinc-200 dark:bg-surface-200 flex items-center justify-center text-zinc-800 dark:text-zinc-200 hover:bg-brand-blue hover:text-white transition-colors"
               aria-label="Back to top"
             >
               <ArrowUp size={14} />

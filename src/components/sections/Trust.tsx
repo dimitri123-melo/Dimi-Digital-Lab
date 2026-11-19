@@ -36,18 +36,18 @@ export default function Trust() {
         </ScrollReveal>
 
         {/* 3 Core Grounded Pillars */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-14 mb-16">
           {t.trust.cards.map((card, idx) => (
             <ScrollReveal key={idx} delay={100 * (idx + 1)}>
-              <div className="h-full rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-surface-100 p-8 flex flex-col justify-between hover:border-brand-blue/50 transition-all duration-300 shadow-sm">
+              <div className="h-full rounded-3xl border border-zinc-300 dark:border-zinc-800 bg-zinc-50/80 dark:bg-surface-100 p-8 flex flex-col justify-between hover:border-brand-blue dark:hover:border-brand-blue transition-all duration-300 shadow-sm">
                 <div>
                   <div className="w-12 h-12 rounded-xl bg-brand-blue/10 dark:bg-brand-blue/20 flex items-center justify-center mb-6">
                     {cardIcons[idx] || <Layers className="w-6 h-6 text-brand-blue" />}
                   </div>
-                  <h3 className="font-heading font-bold text-lg text-zinc-900 dark:text-white mb-2">
+                  <h3 className="font-heading font-extrabold text-lg text-zinc-950 dark:text-white mb-2">
                     {card.title}
                   </h3>
-                  <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                  <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed font-normal">
                     {card.description}
                   </p>
                 </div>
@@ -58,8 +58,8 @@ export default function Trust() {
 
         {/* Verified Facts & Operational Standards Bar */}
         <ScrollReveal delay={350}>
-          <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-surface-100 p-8 lg:p-12 shadow-sm">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:divide-x md:divide-zinc-200 dark:md:divide-zinc-800">
+          <div className="rounded-3xl border border-zinc-300 dark:border-zinc-800 bg-zinc-50/80 dark:bg-surface-100 p-8 lg:p-12 shadow-sm">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:divide-x md:divide-zinc-300 dark:md:divide-zinc-800">
               {t.trust.stats.map((stat, idx) => (
                 <div
                   key={idx}
@@ -69,14 +69,14 @@ export default function Trust() {
                 >
                   <div className="flex items-center gap-2">
                     {statIcons[idx]}
-                    <span className="font-heading text-2xl sm:text-3xl font-extrabold text-zinc-900 dark:text-white">
+                    <span className="font-heading text-2xl sm:text-3xl font-extrabold text-zinc-950 dark:text-white">
                       {stat.value}
                     </span>
                   </div>
-                  <span className="text-brand-blue font-mono text-xs uppercase tracking-wider font-semibold">
+                  <span className="text-brand-blue font-mono text-xs uppercase tracking-wider font-bold">
                     {stat.label}
                   </span>
-                  <p className="text-zinc-600 dark:text-zinc-400 text-xs sm:text-sm mt-1 leading-relaxed">
+                  <p className="text-zinc-700 dark:text-zinc-300 text-xs sm:text-sm mt-1 leading-relaxed font-normal">
                     {stat.desc}
                   </p>
                 </div>

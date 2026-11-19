@@ -86,12 +86,12 @@ export function ContactForm() {
 
   if (isSubmitted) {
     return (
-      <div className="rounded-2xl p-8 sm:p-12 flex flex-col items-center justify-center text-center bg-white dark:bg-surface-100 border border-zinc-200 dark:border-zinc-800">
+      <div className="rounded-2xl p-8 sm:p-12 flex flex-col items-center justify-center text-center bg-white dark:bg-surface-100 border border-zinc-300 dark:border-zinc-800">
         <CheckCircle2 className="w-14 h-14 text-brand-blue mb-4 animate-in zoom-in-50 duration-300" />
-        <h3 className="font-heading text-2xl font-bold text-zinc-900 dark:text-white mb-2">
+        <h3 className="font-heading text-2xl font-extrabold text-zinc-950 dark:text-white mb-2">
           {language === 'fr' ? 'Message Envoyé Avec Succès' : 'Message Sent Successfully'}
         </h3>
-        <p className="text-zinc-600 dark:text-zinc-400 max-w-md text-sm leading-relaxed">
+        <p className="text-zinc-700 dark:text-zinc-300 max-w-md text-sm leading-relaxed font-normal">
           {t.contact.form.successMessage}
         </p>
         <button
@@ -99,7 +99,7 @@ export function ContactForm() {
             setIsSubmitted(false);
             setFormData({ name: '', email: '', service: '', message: '' });
           }}
-          className="mt-6 px-5 py-2.5 rounded-xl bg-zinc-100 dark:bg-surface-200 text-xs font-mono font-semibold text-zinc-700 dark:text-zinc-300 hover:text-black dark:hover:text-white transition-colors"
+          className="mt-6 px-5 py-2.5 rounded-xl bg-zinc-100 dark:bg-surface-200 text-xs font-mono font-bold text-zinc-800 dark:text-zinc-200 hover:text-black dark:hover:text-white transition-colors"
         >
           {language === 'fr' ? 'Envoyer une autre demande' : 'Send another inquiry'}
         </button>
@@ -108,10 +108,10 @@ export function ContactForm() {
   }
 
   const inputStyles =
-    'w-full bg-zinc-50 dark:bg-surface-200/60 border border-zinc-300 dark:border-zinc-700 rounded-xl px-4 py-3 text-zinc-900 dark:text-white placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:border-brand-blue focus:ring-1 focus:ring-brand-blue/50 outline-none transition-all duration-200 text-sm';
+    'w-full bg-white dark:bg-surface-200/60 border border-zinc-300 dark:border-zinc-700 rounded-xl px-4 py-3 text-zinc-950 dark:text-white placeholder:text-zinc-500 dark:placeholder:text-zinc-400 focus:border-brand-blue focus:ring-1 focus:ring-brand-blue/50 outline-none transition-all duration-200 text-sm font-medium';
   const errorInputStyles = 'border-red-500 focus:border-red-500 focus:ring-red-500/50';
   const labelStyles =
-    'block text-xs font-mono font-medium text-zinc-700 dark:text-zinc-300 mb-1.5 uppercase tracking-wider';
+    'block text-xs font-mono font-bold text-zinc-800 dark:text-zinc-200 mb-1.5 uppercase tracking-wider';
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-5" noValidate>
@@ -129,7 +129,7 @@ export function ContactForm() {
             className={`${inputStyles} ${errors.name ? errorInputStyles : ''}`}
             placeholder={t.contact.form.namePlaceholder}
           />
-          {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
+          {errors.name && <p className="text-red-600 dark:text-red-400 text-xs font-bold mt-1">{errors.name}</p>}
         </div>
 
         <div>
@@ -145,7 +145,7 @@ export function ContactForm() {
             className={`${inputStyles} ${errors.email ? errorInputStyles : ''}`}
             placeholder={t.contact.form.emailPlaceholder}
           />
-          {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
+          {errors.email && <p className="text-red-600 dark:text-red-400 text-xs font-bold mt-1">{errors.email}</p>}
         </div>
       </div>
 
@@ -198,13 +198,13 @@ export function ContactForm() {
           className={`${inputStyles} resize-none ${errors.message ? errorInputStyles : ''}`}
           placeholder={t.contact.form.messagePlaceholder}
         />
-        {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message}</p>}
+        {errors.message && <p className="text-red-600 dark:text-red-400 text-xs font-bold mt-1">{errors.message}</p>}
       </div>
 
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full py-3.5 px-6 rounded-xl bg-brand-blue hover:bg-brand-blue-dark text-white font-semibold text-sm tracking-wide shadow-md shadow-brand-blue/20 hover:shadow-lg hover:shadow-brand-blue/30 transition-all flex items-center justify-center gap-2 mt-2 disabled:opacity-70 cursor-pointer"
+        className="w-full py-3.5 px-6 rounded-xl bg-brand-blue hover:bg-brand-blue-dark text-white font-bold text-sm tracking-wide shadow-md shadow-brand-blue/20 hover:shadow-lg hover:shadow-brand-blue/30 transition-all flex items-center justify-center gap-2 mt-2 disabled:opacity-70 cursor-pointer"
       >
         <span>
           {isSubmitting ? t.contact.form.submittingButton : t.contact.form.submitButton}

@@ -42,15 +42,15 @@ export default function MobileMenu({ isOpen, onClose, navLinks }: MobileMenuProp
       role="dialog"
       aria-modal="true"
       aria-label="Mobile navigation menu"
-      className="fixed inset-0 z-40 bg-white/98 dark:bg-surface/98 backdrop-blur-2xl flex flex-col justify-between pt-24 pb-8 px-6 overflow-y-auto animate-in slide-in-from-right-full duration-300 text-zinc-900 dark:text-white"
+      className="fixed inset-0 z-40 bg-white/98 dark:bg-surface/98 backdrop-blur-2xl flex flex-col justify-between pt-24 pb-8 px-6 overflow-y-auto animate-in slide-in-from-right-full duration-300 text-zinc-950 dark:text-white"
     >
       {/* Top Controls in Drawer */}
       <div className="flex items-center justify-between pb-6 border-b border-zinc-200 dark:border-zinc-800">
         <div className="flex flex-col">
-          <span className="font-heading font-bold text-base tracking-wider text-zinc-900 dark:text-white">
+          <span className="font-heading font-extrabold text-base tracking-wider text-zinc-950 dark:text-white">
             DIMI
           </span>
-          <span className="text-[10px] uppercase font-mono tracking-widest text-brand-blue font-semibold">
+          <span className="text-[10px] uppercase font-mono tracking-widest text-brand-blue font-bold">
             DIGITAL LAB
           </span>
         </div>
@@ -69,7 +69,7 @@ export default function MobileMenu({ isOpen, onClose, navLinks }: MobileMenuProp
             onClick={onClose}
             className="group flex items-baseline gap-4"
           >
-            <span className="text-brand-blue font-mono text-sm font-semibold">
+            <span className="text-brand-blue font-mono text-sm font-bold">
               0{index + 1}
             </span>
             <span className="text-2xl sm:text-3xl font-heading font-bold text-zinc-900 dark:text-white group-hover:text-brand-blue transition-colors">
@@ -84,7 +84,7 @@ export default function MobileMenu({ isOpen, onClose, navLinks }: MobileMenuProp
         <Link
           href="#contact"
           onClick={onClose}
-          className="w-full py-3.5 bg-brand-blue text-white text-center rounded-xl font-semibold tracking-wide hover:bg-brand-blue-dark transition-colors shadow-md shadow-brand-blue/20 text-sm flex items-center justify-center gap-2"
+          className="w-full py-3.5 bg-brand-blue text-white text-center rounded-xl font-bold tracking-wide hover:bg-brand-blue-dark transition-colors shadow-md shadow-brand-blue/20 text-sm flex items-center justify-center gap-2"
         >
           <span>{t.nav.workWithMe}</span>
           <ArrowUpRight size={16} />
@@ -100,7 +100,7 @@ export default function MobileMenu({ isOpen, onClose, navLinks }: MobileMenuProp
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors p-2"
+                className="text-zinc-700 hover:text-black dark:text-zinc-300 dark:hover:text-white transition-colors p-2"
                 aria-label={link.name}
               >
                 <Icon size={20} />

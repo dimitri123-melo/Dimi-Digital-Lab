@@ -34,23 +34,35 @@ export function Button({
     setPosition({ x: 0, y: 0 });
   };
 
-  const baseStyles = 'inline-flex items-center justify-center font-medium transition-all duration-300 ease-out active:scale-[0.98] hover:scale-[1.02] disabled:opacity-50 disabled:pointer-events-none rounded-lg';
-  
+  const baseStyles =
+    'inline-flex items-center justify-center font-semibold transition-all duration-300 ease-out active:scale-[0.98] hover:scale-[1.02] disabled:opacity-50 disabled:pointer-events-none rounded-xl';
+
   const variantStyles = {
-    primary: 'bg-brand-blue hover:bg-brand-blue-dark text-white shadow-sm hover:shadow-md shadow-brand-blue/20',
-    secondary: 'bg-transparent border border-zinc-700 hover:border-brand-blue text-white',
-    ghost: 'bg-transparent hover:bg-surface-100 text-zinc-400 hover:text-white',
+    primary:
+      'bg-brand-blue hover:bg-brand-blue-dark text-white shadow-sm hover:shadow-md shadow-brand-blue/20',
+    secondary:
+      'bg-zinc-100 hover:bg-zinc-200 dark:bg-surface-100 dark:hover:bg-surface-200 border border-zinc-300 dark:border-zinc-700 hover:border-brand-blue dark:hover:border-brand-blue text-zinc-950 dark:text-white',
+    ghost:
+      'bg-transparent hover:bg-zinc-100 dark:hover:bg-surface-100 text-zinc-800 hover:text-black dark:text-zinc-200 dark:hover:text-white',
   };
 
   const sizeStyles = {
-    sm: 'px-3 py-1.5 text-sm gap-1.5',
-    md: 'px-5 py-2.5 text-base gap-2',
-    lg: 'px-8 py-4 text-lg gap-3',
+    sm: 'px-3.5 py-1.5 text-xs sm:text-sm gap-1.5',
+    md: 'px-5 py-2.5 text-sm sm:text-base gap-2',
+    lg: 'px-7 py-3.5 text-base sm:text-lg gap-2.5',
   };
 
-  const combinedClassName = [baseStyles, variantStyles[variant], sizeStyles[size], className].filter(Boolean).join(' ');
-  
-  const transformStyle = size === 'lg' ? { transform: `translate3d(${position.x}px, ${position.y}px, 0)` } : {};
+  const combinedClassName = [
+    baseStyles,
+    variantStyles[variant],
+    sizeStyles[size],
+    className,
+  ]
+    .filter(Boolean)
+    .join(' ');
+
+  const transformStyle =
+    size === 'lg' ? { transform: `translate3d(${position.x}px, ${position.y}px, 0)` } : {};
 
   if (href) {
     return (
@@ -62,8 +74,8 @@ export function Button({
         onMouseLeave={handleMouseLeave}
         style={transformStyle}
       >
-        {icon && <span className="flex-shrink-0">{icon}</span>}
         {children}
+        {icon && <span className="flex-shrink-0">{icon}</span>}
       </Link>
     );
   }
@@ -77,8 +89,8 @@ export function Button({
       style={transformStyle}
       {...props}
     >
-      {icon && <span className="flex-shrink-0">{icon}</span>}
       {children}
+      {icon && <span className="flex-shrink-0">{icon}</span>}
     </button>
   );
 }
