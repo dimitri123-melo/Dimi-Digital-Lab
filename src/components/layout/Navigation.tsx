@@ -57,12 +57,12 @@ export default function Navigation() {
         <div className="container-main mx-auto h-16 flex items-center justify-between">
           {/* Left: Brand Logo & Title */}
           <Link href="#home" className="flex items-center gap-3 relative z-50 group">
-            <div className="relative w-10 h-10 rounded-lg overflow-hidden border border-zinc-300 dark:border-zinc-800 shadow-sm">
+            <div className="relative w-10 h-10 rounded-lg overflow-hidden border border-zinc-300 dark:border-zinc-800 shadow-sm bg-black">
               <Image
-                src="/images/logo.jpg"
+                src="/icon.png"
                 alt="DIMI DIGITAL LAB — Official Logo"
                 fill
-                className="object-cover transition-transform duration-300 group-hover:scale-105"
+                className="object-contain p-0.5 transition-transform duration-300 group-hover:scale-105"
                 priority
               />
             </div>

@@ -38,10 +38,11 @@ export default function Hero() {
 
             {/* Slogan Headline */}
             <ScrollReveal delay={200} duration={800}>
-              <h1 className="font-heading font-bold text-zinc-900 dark:text-white text-[clamp(2.75rem,5.5vw,5rem)] leading-[1.05] tracking-tight">
-                {t.hero.heading1}<span className="text-brand-blue"></span><br />
-                {t.hero.heading2}<span className="text-brand-blue"></span><br />
-                {t.hero.heading3}<span className="text-brand-blue"></span>
+              <h1 className="font-heading font-bold text-zinc-900 dark:text-white text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.08] tracking-tight">
+                Dimitri Kuete<br />
+                <span className="text-brand-blue text-[clamp(2rem,4vw,3.5rem)] font-extrabold tracking-normal">
+                  {t.hero.heading1} {t.hero.heading2} {t.hero.heading3}
+                </span>
               </h1>
             </ScrollReveal>
 

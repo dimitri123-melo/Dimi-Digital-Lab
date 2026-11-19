@@ -24,7 +24,7 @@ export default function About() {
           {/* Left Column - Authentic Portrait */}
           <div className="lg:col-span-4 flex flex-col gap-6">
             <ScrollReveal delay={100} direction="right">
-              <div className="relative aspect-[3/4] w-full max-w-sm mx-auto lg:max-w-none rounded-2xl overflow-hidden border border-zinc-300 dark:border-zinc-800 p-2.5 bg-white dark:bg-surface-100 shadow-xl">
+              <div className="relative aspect-square w-full max-w-sm mx-auto lg:max-w-none rounded-2xl overflow-hidden border border-zinc-300 dark:border-zinc-800 p-2.5 bg-white dark:bg-surface-100 shadow-xl">
                 <div className="relative w-full h-full rounded-xl overflow-hidden bg-zinc-900">
                   <Image
                     src="/images/dimitri.jpg"

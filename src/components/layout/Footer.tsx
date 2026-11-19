@@ -17,12 +17,12 @@ export default function Footer() {
           {/* Brand */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-3">
-              <div className="relative w-9 h-9 rounded-lg overflow-hidden border border-zinc-300 dark:border-zinc-800 shadow-sm">
+              <div className="relative w-9 h-9 rounded-lg overflow-hidden border border-zinc-300 dark:border-zinc-800 shadow-sm bg-black">
                 <Image
-                  src="/images/logo.jpg"
+                  src="/icon.png"
                   alt="DIMI DIGITAL LAB"
                   fill
-                  className="object-cover"
+                  className="object-contain p-0.5"
                 />
               </div>
               <span className="font-heading font-bold tracking-widest text-lg text-zinc-900 dark:text-white">
