@@ -2,17 +2,16 @@ import { NavItem, SocialLink } from '@/types';
 
 export const navItems: NavItem[] = [
   { label: 'Home', href: '#home' },
-  { label: 'Services', href: '#services' },
-  { label: 'Work', href: '#work' },
   { label: 'About', href: '#about' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Process', href: '#process' },
+  { label: 'Services', href: '#services' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Training', href: '#training' },
   { label: 'Contact', href: '#contact' },
 ];
 
 export const socialLinks: SocialLink[] = [
-  { name: 'LinkedIn', url: '#', icon: 'linkedin' },
-  { name: 'GitHub', url: '#', icon: 'github' },
-  { name: 'TikTok', url: '#', icon: 'tiktok' },
-  { name: 'Instagram', url: '#', icon: 'instagram' },
+  { name: 'LinkedIn', url: 'https://linkedin.com', icon: 'Linkedin' },
+  { name: 'GitHub', url: 'https://github.com', icon: 'Github' },
+  { name: 'Instagram', url: 'https://instagram.com', icon: 'Instagram' },
+  { name: 'YouTube', url: 'https://youtube.com', icon: 'Youtube' },
 ];

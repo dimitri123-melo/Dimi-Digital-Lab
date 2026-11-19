@@ -1,117 +1,155 @@
 'use client';
 
 import Image from 'next/image';
-import { Button } from '@/components/ui/Button';
+import Link from 'next/link';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { useLanguage } from '@/context/LanguageContext';
-import { Globe, ArrowUpRight, Sparkles } from 'lucide-react';
+import { ArrowUpRight, ExternalLink, Globe } from 'lucide-react';
 
 export default function Hero() {
   const { t } = useLanguage();
 
   return (
-    <section id="home" className="relative min-h-[90vh] lg:min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
-      {/* Subtle Background Glows */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-blue/10 rounded-full blur-[140px] -translate-y-1/3 translate-x-1/4 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-brand-blue/5 rounded-full blur-[120px] pointer-events-none" />
-
-      {/* Grid Pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.03)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:48px_48px] pointer-events-none" />
+    <section
+      id="home"
+      className="relative min-h-[92vh] lg:min-h-screen flex items-center pt-28 pb-16 overflow-hidden"
+    >
+      {/* Ambient background glow */}
+      <div className="absolute top-1/4 right-5 w-96 h-96 bg-brand-blue/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 left-5 w-80 h-80 bg-brand-blue/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
-        <div className="flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-16">
-          {/* Left Side Content */}
-          <div className="w-full lg:w-[56%] flex flex-col gap-6">
-            {/* Studio Badge & Location */}
-            <ScrollReveal delay={100} duration={700}>
-              <div className="flex flex-wrap items-center gap-3">
-                <div className="flex items-center gap-2 px-3 py-1 rounded-full border border-brand-blue/30 bg-brand-blue/10 dark:bg-brand-blue/20 text-brand-blue-dark dark:text-brand-blue-light text-xs font-semibold">
-                  <Sparkles size={12} />
-                  <span>{t.hero.taglineBadge}</span>
-                </div>
-                <div className="flex items-center gap-1.5 text-xs text-zinc-600 dark:text-zinc-400 font-medium">
-                  <Globe size={13} className="text-brand-blue" />
-                  <span>{t.hero.location}</span>
-                </div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
+          {/* Left Column: Core Positioning & Action */}
+          <div className="lg:col-span-7 flex flex-col gap-6">
+            {/* Status Pill */}
+            <ScrollReveal delay={100}>
+              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-surface-100/80 backdrop-blur-sm text-xs font-mono text-zinc-700 dark:text-zinc-300 shadow-sm w-fit">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span>{t.hero.statusAvailable}</span>
               </div>
             </ScrollReveal>
 
-            {/* Slogan Headline */}
-            <ScrollReveal delay={200} duration={800}>
-              <h1 className="font-heading font-bold text-zinc-900 dark:text-white text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.08] tracking-tight">
-                Dimitri Kuete<br />
-                <span className="text-brand-blue text-[clamp(2rem,4vw,3.5rem)] font-extrabold tracking-normal">
-                  {t.hero.heading1} {t.hero.heading2} {t.hero.heading3}
+            {/* Headline */}
+            <ScrollReveal delay={200}>
+              <h1 className="font-heading font-extrabold text-zinc-900 dark:text-white text-3xl sm:text-5xl lg:text-6xl leading-[1.12] tracking-tight">
+                {t.hero.headlinePart1}{' '}
+                <span className="block text-zinc-800 dark:text-zinc-200">
+                  {t.hero.headlinePart2}
+                </span>
+                <span className="block text-brand-blue">
+                  {t.hero.headlinePart3}
                 </span>
               </h1>
             </ScrollReveal>
 
-            {/* Positioning Subtitle */}
-            <ScrollReveal delay={300} duration={800}>
-              <p className="text-brand-blue font-mono font-medium text-sm sm:text-base tracking-wide">
+            {/* Professional Role Title */}
+            <ScrollReveal delay={250}>
+              <p className="text-xs sm:text-sm uppercase tracking-wider font-mono font-semibold text-zinc-600 dark:text-zinc-400">
                 {t.hero.role}
               </p>
             </ScrollReveal>
 
-            {/* Narrative Description */}
-            <ScrollReveal delay={400} duration={800}>
-              <p className="text-zinc-600 dark:text-zinc-400 max-w-xl text-base sm:text-lg leading-relaxed">
+            {/* Supporting Description */}
+            <ScrollReveal delay={300}>
+              <p className="text-zinc-600 dark:text-zinc-400 text-base sm:text-lg leading-relaxed max-w-2xl">
                 {t.hero.description}
               </p>
             </ScrollReveal>
 
-            {/* CTA Buttons */}
-            <ScrollReveal delay={500} duration={800}>
-              <div className="flex flex-col sm:flex-row gap-4 pt-2">
-                <Button variant="primary" size="lg" href="#contact">
-                  {t.hero.startProject}
-                </Button>
-                <Button variant="secondary" size="lg" href="#work">
-                  {t.hero.viewWork}
-                </Button>
+            {/* CTAs */}
+            <ScrollReveal delay={350}>
+              <div className="flex flex-wrap items-center gap-4 pt-2">
+                <Link
+                  href="#contact"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-brand-blue hover:bg-brand-blue-dark text-white font-semibold text-sm tracking-wide shadow-md shadow-brand-blue/20 hover:shadow-lg hover:shadow-brand-blue/30 transition-all"
+                >
+                  <span>{t.hero.primaryCta}</span>
+                  <ArrowUpRight size={16} />
+                </Link>
+
+                <Link
+                  href="#projects"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white/70 dark:bg-surface-100/70 hover:bg-zinc-100 dark:hover:bg-surface-200 text-zinc-800 dark:text-zinc-200 font-semibold text-sm tracking-wide transition-all"
+                >
+                  <span>{t.hero.secondaryCta}</span>
+                </Link>
               </div>
             </ScrollReveal>
 
-            {/* Credible Capabilities Bar */}
-            <ScrollReveal delay={600} duration={800}>
-              <div className="pt-6 border-t border-zinc-200 dark:border-zinc-800/80 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-mono text-zinc-600 dark:text-zinc-400">
-                <span className="px-2.5 py-1 rounded bg-zinc-100 dark:bg-surface-100 border border-zinc-200 dark:border-zinc-800">
-                  {t.hero.badge1}
+            {/* Live SaaS Preview Cards */}
+            <ScrollReveal delay={400}>
+              <div className="pt-6 border-t border-zinc-200 dark:border-zinc-800/80 flex flex-col gap-2.5">
+                <span className="text-[11px] uppercase tracking-wider font-mono text-zinc-500 font-medium">
+                  {t.hero.saasLabel}
                 </span>
-                <span className="px-2.5 py-1 rounded bg-zinc-100 dark:bg-surface-100 border border-zinc-200 dark:border-zinc-800">
-                  {t.hero.badge2}
-                </span>
-                <span className="px-2.5 py-1 rounded bg-zinc-100 dark:bg-surface-100 border border-zinc-200 dark:border-zinc-800">
-                  {t.hero.badge3}
-                </span>
+                <div className="flex flex-wrap gap-3">
+                  <a
+                    href="https://school-ios.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-lg bg-zinc-100 dark:bg-surface-100 border border-zinc-200 dark:border-zinc-800 text-xs text-zinc-800 dark:text-zinc-200 hover:border-brand-blue/50 transition-colors group"
+                  >
+                    <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                    <span className="font-semibold">SchoolIOS</span>
+                    <span className="text-zinc-500 font-mono text-[11px]">Education SaaS</span>
+                    <ExternalLink size={12} className="text-zinc-400 group-hover:text-brand-blue" />
+                  </a>
+
+                  <a
+                    href="https://www.chop237.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-lg bg-zinc-100 dark:bg-surface-100 border border-zinc-200 dark:border-zinc-800 text-xs text-zinc-800 dark:text-zinc-200 hover:border-brand-blue/50 transition-colors group"
+                  >
+                    <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                    <span className="font-semibold">Chop237</span>
+                    <span className="text-zinc-500 font-mono text-[11px]">Food SaaS</span>
+                    <ExternalLink size={12} className="text-zinc-400 group-hover:text-brand-blue" />
+                  </a>
+
+                  <div className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-zinc-50 dark:bg-surface-200/50 border border-dashed border-zinc-300 dark:border-zinc-700 text-xs text-zinc-600 dark:text-zinc-400">
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+                    <span className="font-medium">CardLink</span>
+                    <span className="text-[10px] font-mono text-zinc-500">In Dev</span>
+                  </div>
+                </div>
               </div>
             </ScrollReveal>
           </div>
 
-          {/* Right Side: Founder Profile Photo */}
-          <div className="w-full lg:w-[44%] flex justify-center lg:justify-end">
-            <ScrollReveal delay={250} duration={900} className="relative w-full max-w-[360px] sm:max-w-[420px]">
-              <div className="relative aspect-square w-full rounded-2xl overflow-hidden border border-zinc-300 dark:border-zinc-800 p-2.5 bg-white/70 dark:bg-surface-100/70 shadow-2xl backdrop-blur-sm">
-                <div className="relative w-full h-full rounded-xl overflow-hidden bg-zinc-900">
+          {/* Right Column: Authentic Professional Portrait Presentation */}
+          <div className="lg:col-span-5 flex justify-center lg:justify-end">
+            <ScrollReveal delay={250} className="w-full max-w-[380px] sm:max-w-[420px]">
+              <div className="relative rounded-3xl p-3 bg-gradient-to-b from-white to-zinc-100 dark:from-surface-100 dark:to-surface border border-zinc-200 dark:border-zinc-800 shadow-2xl backdrop-blur-md">
+                {/* Image Stage */}
+                <div className="relative aspect-[4/5] w-full rounded-2xl overflow-hidden bg-gradient-to-b from-zinc-200 via-zinc-300 to-zinc-400 dark:from-surface-200 dark:via-surface-100 dark:to-surface flex items-end justify-center">
                   <Image
-                    src="/images/dimitri.jpg"
-                    alt="Dimitri Kuete — Founder & Lead Specialist at DIMI DIGITAL LAB"
+                    src="/images/dimitri_transparent.png"
+                    alt="Dimitri Kuete — Founder of DIMI DIGITAL LAB"
                     fill
-                    className="object-cover object-center scale-[1.02] hover:scale-100 transition-transform duration-700"
-                    priority
                     sizes="(max-width: 768px) 100vw, 420px"
+                    className="object-contain object-bottom filter drop-shadow-2xl"
+                    priority
                   />
-                  {/* Subtle edge gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                  {/* Subtle soft gradient fade at bottom */}
+                  <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                 </div>
 
-                {/* Founder Badge Overlay */}
-                <div className="absolute bottom-5 left-5 right-5 z-20 p-3 rounded-xl bg-black/75 backdrop-blur-md border border-white/10 text-white flex items-center justify-between">
-                  <div>
-                    <div className="font-heading font-bold text-sm tracking-wide">Dimitri Kuete</div>
-                    <div className="text-[11px] text-zinc-300 font-mono">DIMI DIGITAL LAB Founder</div>
+                {/* Identity Badge Overlay */}
+                <div className="mt-3 p-3.5 rounded-xl bg-white dark:bg-surface-200 border border-zinc-200 dark:border-zinc-700/80 shadow-sm flex items-center justify-between">
+                  <div className="flex flex-col">
+                    <span className="font-heading font-bold text-sm text-zinc-900 dark:text-white">
+                      Dimitri Kuete
+                    </span>
+                    <span className="text-[11px] font-mono text-brand-blue font-semibold">
+                      DIMI DIGITAL LAB · Founder
+                    </span>
                   </div>
-                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" title="Available for projects" />
+                  <div className="flex items-center gap-1.5 text-[11px] font-mono text-zinc-600 dark:text-zinc-400">
+                    <Globe size={13} className="text-brand-blue" />
+                    <span>Cameroon</span>
+                  </div>
                 </div>
               </div>
             </ScrollReveal>

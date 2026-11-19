@@ -3,25 +3,28 @@
 import { ContactForm } from '@/components/ui/ContactForm';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { useLanguage } from '@/context/LanguageContext';
-import { Mail, Globe, MessageSquare } from 'lucide-react';
+import { Mail, MessageSquare, Globe, Clock, ArrowUpRight } from 'lucide-react';
 import { socialLinks } from '@/data/navigation';
 
 export default function Contact() {
   const { t } = useLanguage();
 
   return (
-    <section id="contact" className="py-24 bg-zinc-50 dark:bg-surface relative overflow-hidden transition-colors duration-200">
-      {/* Background Gradients */}
-      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-brand-blue/5 pointer-events-none" />
-      <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-brand-blue/10 rounded-full blur-[140px] pointer-events-none translate-y-1/2" />
+    <section
+      id="contact"
+      className="py-24 bg-zinc-50 dark:bg-surface relative overflow-hidden transition-colors duration-200"
+    >
+      {/* Background ambient lighting */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-brand-blue/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-brand-blue/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="container mx-auto px-6 max-w-6xl relative z-10">
         {/* Header Section */}
         <ScrollReveal className="text-center mb-16">
           <span className="text-xs font-mono uppercase tracking-widest text-brand-blue font-semibold">
-            07 · {t.contact.sectionSubtitle}
+            {t.contact.sectionNumber} · {t.contact.sectionSubtitle}
           </span>
-          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-zinc-900 dark:text-white tracking-tight mt-2">
+          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-zinc-900 dark:text-white tracking-tight mt-2">
             {t.contact.heading}
           </h2>
           <p className="text-zinc-600 dark:text-zinc-400 text-base sm:text-lg max-w-2xl mx-auto mt-4 leading-relaxed">
@@ -30,98 +33,94 @@ export default function Contact() {
         </ScrollReveal>
 
         {/* Content Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* Form */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-start">
+          {/* Left Column: Form */}
           <ScrollReveal delay={200} className="lg:col-span-7 w-full">
-            <div className="card-surface p-8 rounded-2xl">
+            <div className="rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-surface-100 p-8 sm:p-10 shadow-lg">
               <ContactForm />
             </div>
           </ScrollReveal>
 
-          {/* Contact Direct Info */}
+          {/* Right Column: Direct Verified Channels */}
           <ScrollReveal delay={300} direction="right" className="lg:col-span-5 flex flex-col gap-8">
             <div>
-              <h3 className="font-heading text-xl font-bold text-zinc-900 dark:text-white mb-3">
+              <h3 className="font-heading text-xl font-bold text-zinc-900 dark:text-white mb-2">
                 {t.contact.connectHeading}
               </h3>
-              <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed mb-8">
+              <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed mb-6">
                 {t.contact.connectSubheading}
               </p>
 
-              <div className="flex flex-col gap-5">
-                {/* Email */}
+              <div className="flex flex-col gap-4">
+                {/* Email Direct */}
                 <a
                   href="mailto:novaskill237@gmail.com"
-                  className="card-surface p-4 rounded-xl flex items-center gap-4 hover:border-brand-blue/50 transition-colors group"
+                  className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-surface-100 p-4 flex items-center gap-4 hover:border-brand-blue/50 transition-all shadow-sm group"
                 >
-                  <div className="w-11 h-11 rounded-lg bg-brand-blue/10 dark:bg-brand-blue/20 flex items-center justify-center text-brand-blue group-hover:bg-brand-blue group-hover:text-white transition-colors flex-shrink-0">
+                  <div className="w-12 h-12 rounded-xl bg-brand-blue/10 dark:bg-brand-blue/20 flex items-center justify-center text-brand-blue group-hover:bg-brand-blue group-hover:text-white transition-colors flex-shrink-0">
                     <Mail className="w-5 h-5" />
                   </div>
-                  <div>
-                    <div className="text-xs font-mono text-zinc-500 uppercase">
+                  <div className="flex flex-col flex-1">
+                    <span className="text-[11px] font-mono text-zinc-500 uppercase">
                       {t.contact.direct.emailLabel}
-                    </div>
-                    <div className="font-semibold text-zinc-900 dark:text-white text-sm mt-0.5">
+                    </span>
+                    <span className="font-semibold text-zinc-900 dark:text-white text-sm mt-0.5">
                       novaskill237@gmail.com
-                    </div>
+                    </span>
                   </div>
+                  <ArrowUpRight size={16} className="text-zinc-400 group-hover:text-brand-blue" />
                 </a>
 
-                {/* WhatsApp */}
+                {/* WhatsApp Direct */}
                 <a
                   href="https://wa.me/237682764947"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="card-surface p-4 rounded-xl flex items-center gap-4 hover:border-brand-blue/50 transition-colors group"
+                  className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-surface-100 p-4 flex items-center gap-4 hover:border-brand-blue/50 transition-all shadow-sm group"
                 >
-                  <div className="w-11 h-11 rounded-lg bg-brand-blue/10 dark:bg-brand-blue/20 flex items-center justify-center text-brand-blue group-hover:bg-brand-blue group-hover:text-white transition-colors flex-shrink-0">
+                  <div className="w-12 h-12 rounded-xl bg-brand-blue/10 dark:bg-brand-blue/20 flex items-center justify-center text-brand-blue group-hover:bg-brand-blue group-hover:text-white transition-colors flex-shrink-0">
                     <MessageSquare className="w-5 h-5" />
                   </div>
-                  <div>
-                    <div className="text-xs font-mono text-zinc-500 uppercase">
+                  <div className="flex flex-col flex-1">
+                    <span className="text-[11px] font-mono text-zinc-500 uppercase">
                       {t.contact.direct.whatsappLabel}
-                    </div>
-                    <div className="font-semibold text-zinc-900 dark:text-white text-sm mt-0.5">
+                    </span>
+                    <span className="font-semibold text-zinc-900 dark:text-white text-sm mt-0.5">
                       +237 682 76 49 47
-                    </div>
+                    </span>
                   </div>
+                  <ArrowUpRight size={16} className="text-zinc-400 group-hover:text-brand-blue" />
                 </a>
 
-                {/* Location */}
-                <div className="card-surface p-4 rounded-xl flex items-center gap-4">
-                  <div className="w-11 h-11 rounded-lg bg-zinc-100 dark:bg-surface-200 flex items-center justify-center text-brand-blue flex-shrink-0">
-                    <Globe className="w-5 h-5" />
+                {/* Response Notice & Location */}
+                <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-surface-100 p-4 flex items-center gap-4 shadow-sm">
+                  <div className="w-12 h-12 rounded-xl bg-zinc-100 dark:bg-surface-200 flex items-center justify-center text-brand-blue flex-shrink-0">
+                    <Clock className="w-5 h-5" />
                   </div>
-                  <div>
-                    <div className="text-xs font-mono text-zinc-500 uppercase">
-                      {t.contact.direct.locationLabel}
-                    </div>
-                    <div className="font-semibold text-zinc-900 dark:text-white text-sm mt-0.5">
-                      {t.contact.direct.locationValue}
-                    </div>
+                  <div className="flex flex-col">
+                    <span className="text-[11px] font-mono text-zinc-500 uppercase">
+                      Response Guarantee
+                    </span>
+                    <span className="text-xs text-zinc-700 dark:text-zinc-300 font-medium mt-0.5">
+                      {t.contact.direct.responseNotice}
+                    </span>
                   </div>
                 </div>
-              </div>
-            </div>
 
-            {/* Social Links */}
-            <div className="pt-6 border-t border-zinc-200 dark:border-zinc-800">
-              <div className="text-xs font-mono text-zinc-500 uppercase mb-3">
-                {t.contact.direct.followMe}
-              </div>
-              <div className="flex flex-wrap gap-2.5">
-                {socialLinks.map((link) => (
-                  <a
-                    key={link.name}
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-3.5 py-1.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-surface-100 hover:border-brand-blue/50 text-zinc-700 dark:text-zinc-300 hover:text-brand-blue text-xs font-mono font-medium transition-colors"
-                    aria-label={link.name}
-                  >
-                    {link.name}
-                  </a>
-                ))}
+                {/* Location */}
+                <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-surface-100 p-4 flex items-center gap-4 shadow-sm">
+                  <div className="w-12 h-12 rounded-xl bg-zinc-100 dark:bg-surface-200 flex items-center justify-center text-brand-blue flex-shrink-0">
+                    <Globe className="w-5 h-5" />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-[11px] font-mono text-zinc-500 uppercase">
+                      {t.contact.direct.locationLabel}
+                    </span>
+                    <span className="text-xs text-zinc-700 dark:text-zinc-300 font-medium mt-0.5">
+                      {t.contact.direct.locationValue}
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
           </ScrollReveal>

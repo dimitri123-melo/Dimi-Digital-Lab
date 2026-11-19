@@ -10,54 +10,64 @@ import * as LucideIcons from 'lucide-react';
 export default function Footer() {
   const { t } = useLanguage();
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const navLinks = [
+    { label: t.nav.home, href: '#home' },
+    { label: t.nav.about, href: '#about' },
+    { label: t.nav.services, href: '#services' },
+    { label: t.nav.projects, href: '#projects' },
+    { label: t.nav.creative, href: '#creative' },
+    { label: t.nav.training, href: '#training' },
+    { label: t.nav.contact, href: '#contact' },
+  ];
+
   return (
     <footer className="bg-zinc-100 dark:bg-surface-50 border-t border-zinc-200 dark:border-zinc-800 pt-16 pb-8 transition-colors duration-200">
-      <div className="container-main mx-auto">
+      <div className="container mx-auto px-6 max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-          {/* Brand */}
+          {/* Brand Identity */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-3">
-              <div className="relative w-9 h-9 rounded-lg overflow-hidden border border-zinc-300 dark:border-zinc-800 shadow-sm bg-black">
+              <div className="relative w-9 h-9 rounded-xl overflow-hidden border border-zinc-200 dark:border-zinc-800 shadow-sm bg-black p-0.5">
                 <Image
                   src="/icon.png"
                   alt="DIMI DIGITAL LAB"
                   fill
-                  className="object-contain p-0.5"
+                  className="object-contain"
                 />
               </div>
-              <span className="font-heading font-bold tracking-widest text-lg text-zinc-900 dark:text-white">
-                DIMI
+              <span className="font-heading font-bold tracking-wider text-base text-zinc-900 dark:text-white">
+                DIMI DIGITAL LAB
               </span>
             </div>
-            <p className="text-zinc-500 dark:text-zinc-400 text-xs tracking-wider uppercase font-semibold">
+            <p className="text-brand-blue text-xs tracking-wider uppercase font-semibold font-mono">
               {t.footer.slogan}
             </p>
-            <p className="text-zinc-600 dark:text-zinc-400 text-sm mt-1 leading-relaxed">
+            <p className="text-zinc-600 dark:text-zinc-400 text-xs sm:text-sm mt-1 leading-relaxed">
               {t.footer.tagline}
             </p>
-            <div className="flex items-center gap-2 text-xs font-medium text-brand-blue-dark dark:text-brand-blue-light mt-1">
+            <div className="flex items-center gap-2 text-xs font-medium text-brand-blue mt-1">
               <Globe size={14} />
               <span>{t.footer.cameroonToWorld}</span>
             </div>
           </div>
 
-          {/* Services */}
+          {/* 4 Professional Domains */}
           <div>
             <h3 className="text-zinc-900 dark:text-zinc-300 text-xs uppercase tracking-wider font-semibold mb-5 font-mono">
               {t.footer.servicesTitle}
             </h3>
             <ul className="flex flex-col gap-2.5">
-              {[
-                { label: t.services.divisions.marketing.title, href: '#services' },
-                { label: t.services.divisions.aiCreative.title, href: '#services' },
-                { label: t.services.divisions.webSoftware.title, href: '#services' },
-              ].map((service) => (
-                <li key={service.label}>
+              {t.services.domains.map((domain) => (
+                <li key={domain.id}>
                   <Link
-                    href={service.href}
+                    href="#services"
                     className="text-xs text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors"
                   >
-                    {service.label}
+                    {domain.title}
                   </Link>
                 </li>
               ))}
@@ -70,16 +80,8 @@ export default function Footer() {
               {t.footer.navTitle}
             </h3>
             <ul className="flex flex-col gap-2.5">
-              {[
-                { label: t.nav.services, href: '#services' },
-                { label: t.nav.portfolio, href: '#work' },
-                { label: t.nav.about, href: '#about' },
-                { label: t.nav.skills, href: '#skills' },
-                { label: t.nav.process, href: '#process' },
-                { label: t.nav.trust, href: '#trust' },
-                { label: t.nav.contact, href: '#contact' },
-              ].map((item) => (
-                <li key={item.label}>
+              {navLinks.map((item) => (
+                <li key={item.href}>
                   <Link
                     href={item.href}
                     className="text-xs text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors"
@@ -91,12 +93,32 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Connect */}
+          {/* Direct Connect */}
           <div>
             <h3 className="text-zinc-900 dark:text-zinc-300 text-xs uppercase tracking-wider font-semibold mb-5 font-mono">
               {t.footer.connectTitle}
             </h3>
-            <div className="flex gap-3 mb-6">
+            <div className="flex flex-col gap-3 mb-6">
+              <a
+                href="mailto:novaskill237@gmail.com"
+                className="flex items-center gap-2 text-xs text-zinc-600 dark:text-zinc-400 hover:text-brand-blue transition-colors"
+              >
+                <Mail size={14} className="text-brand-blue" />
+                <span>novaskill237@gmail.com</span>
+              </a>
+              <a
+                href="https://wa.me/237682764947"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-xs text-zinc-600 dark:text-zinc-400 hover:text-brand-blue transition-colors"
+              >
+                <MessageSquare size={14} className="text-brand-blue" />
+                <span>+237 682 76 49 47</span>
+              </a>
+            </div>
+
+            {/* Social Icons */}
+            <div className="flex gap-3">
               {socialLinks.map((link) => {
                 const Icon = (LucideIcons as any)[link.icon] || LucideIcons.Link;
                 return (
@@ -105,52 +127,31 @@ export default function Footer() {
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-9 h-9 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-surface-100 flex items-center justify-center text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white hover:border-brand-blue/50 transition-colors"
+                    className="w-8 h-8 rounded-lg bg-zinc-200 dark:bg-surface-200 flex items-center justify-center text-zinc-700 dark:text-zinc-300 hover:bg-brand-blue hover:text-white transition-colors"
                     aria-label={link.name}
                   >
-                    <Icon size={16} />
+                    <Icon size={14} />
                   </a>
                 );
               })}
-            </div>
-            <div className="flex flex-col gap-2 text-xs">
-              <a
-                href="mailto:novaskill237@gmail.com"
-                className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors"
-              >
-                <Mail size={13} className="text-brand-blue" />
-                novaskill237@gmail.com
-              </a>
-              <a
-                href="https://wa.me/237682764947"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors"
-              >
-                <MessageSquare size={13} className="text-brand-blue" />
-                +237 682 76 49 47
-              </a>
             </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-zinc-200 dark:border-zinc-800/80 gap-4">
-          <p className="text-zinc-500 dark:text-zinc-500 text-xs">
-            © {new Date().getFullYear()} {t.footer.copyright}
-          </p>
-          <div className="flex items-center gap-6">
-            <p className="text-zinc-500 dark:text-zinc-500 text-xs">
-              {t.footer.designedAndBuilt}
-            </p>
-            <a
-              href="#home"
-              className="w-8 h-8 rounded-lg bg-zinc-200/80 dark:bg-zinc-800/60 flex items-center justify-center text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors"
-              aria-label={t.footer.backToTop}
-              title={t.footer.backToTop}
+        <div className="pt-8 border-t border-zinc-200 dark:border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-zinc-500">
+          <div>
+            © {new Date().getFullYear()} DIMI DIGITAL LAB · {t.footer.copyright}
+          </div>
+          <div className="flex items-center gap-4">
+            <span>{t.footer.designedAndBuilt}</span>
+            <button
+              onClick={scrollToTop}
+              className="w-8 h-8 rounded-lg bg-zinc-200 dark:bg-surface-200 flex items-center justify-center text-zinc-700 dark:text-zinc-300 hover:bg-brand-blue hover:text-white transition-colors"
+              aria-label="Back to top"
             >
-              <ArrowUp size={15} />
-            </a>
+              <ArrowUp size={14} />
+            </button>
           </div>
         </div>
       </div>

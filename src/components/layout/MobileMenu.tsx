@@ -7,6 +7,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import { LanguageToggle } from '@/components/ui/LanguageToggle';
 import * as LucideIcons from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -45,9 +46,14 @@ export default function MobileMenu({ isOpen, onClose, navLinks }: MobileMenuProp
     >
       {/* Top Controls in Drawer */}
       <div className="flex items-center justify-between pb-6 border-b border-zinc-200 dark:border-zinc-800">
-        <span className="text-xs font-mono uppercase tracking-widest text-zinc-500">
-          DIMI DIGITAL LAB
-        </span>
+        <div className="flex flex-col">
+          <span className="font-heading font-bold text-base tracking-wider text-zinc-900 dark:text-white">
+            DIMI
+          </span>
+          <span className="text-[10px] uppercase font-mono tracking-widest text-brand-blue font-semibold">
+            DIGITAL LAB
+          </span>
+        </div>
         <div className="flex items-center gap-3">
           <LanguageToggle />
           <ThemeToggle />
@@ -63,7 +69,7 @@ export default function MobileMenu({ isOpen, onClose, navLinks }: MobileMenuProp
             onClick={onClose}
             className="group flex items-baseline gap-4"
           >
-            <span className="text-zinc-400 dark:text-zinc-600 font-mono text-sm">
+            <span className="text-brand-blue font-mono text-sm font-semibold">
               0{index + 1}
             </span>
             <span className="text-2xl sm:text-3xl font-heading font-bold text-zinc-900 dark:text-white group-hover:text-brand-blue transition-colors">
@@ -78,13 +84,14 @@ export default function MobileMenu({ isOpen, onClose, navLinks }: MobileMenuProp
         <Link
           href="#contact"
           onClick={onClose}
-          className="w-full py-3.5 bg-brand-blue text-white text-center rounded-lg font-semibold tracking-wide hover:bg-brand-blue-dark transition-colors shadow-md shadow-brand-blue/20 text-sm"
+          className="w-full py-3.5 bg-brand-blue text-white text-center rounded-xl font-semibold tracking-wide hover:bg-brand-blue-dark transition-colors shadow-md shadow-brand-blue/20 text-sm flex items-center justify-center gap-2"
         >
-          {t.nav.startProject}
+          <span>{t.nav.workWithMe}</span>
+          <ArrowUpRight size={16} />
         </Link>
 
         {/* Social Links */}
-        <div className="flex items-center gap-6">
+        <div className="flex items-center justify-center gap-6 pt-4 border-t border-zinc-200 dark:border-zinc-800">
           {socialLinks.map((link) => {
             const Icon = (LucideIcons as any)[link.icon] || LucideIcons.Link;
             return (
@@ -93,25 +100,13 @@ export default function MobileMenu({ isOpen, onClose, navLinks }: MobileMenuProp
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors"
+                className="text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors p-2"
                 aria-label={link.name}
               >
-                <Icon size={22} />
+                <Icon size={20} />
               </a>
             );
           })}
-        </div>
-
-        <div>
-          <h3 className="font-heading font-bold tracking-widest text-sm text-zinc-900 dark:text-white">
-            DIMI DIGITAL LAB
-          </h3>
-          <p className="text-zinc-500 dark:text-zinc-400 text-xs mt-0.5">
-            CREATE. INNOVATE. ELEVATE.
-          </p>
-          <p className="text-[11px] text-zinc-400 dark:text-zinc-500 mt-1 font-mono">
-            {t.footer.cameroonToWorld}
-          </p>
         </div>
       </div>
     </div>

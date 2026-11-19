@@ -1,18 +1,14 @@
 'use client';
 
-import React, { useState } from 'react';
-import { Button } from './Button';
+import React, { useState, useEffect } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { Send, CheckCircle2 } from 'lucide-react';
 
 interface FormData {
   name: string;
   email: string;
-  company: string;
   service: string;
-  description: string;
-  budget: string;
-  timeline: string;
+  message: string;
 }
 
 interface FormErrors {
@@ -25,16 +21,29 @@ export function ContactForm() {
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
-    company: '',
     service: '',
-    description: '',
-    budget: '',
-    timeline: '',
+    message: '',
   });
 
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Check URL hash / query parameters for preselected training programme
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const hash = window.location.hash;
+      if (hash.includes('training-ecommerce')) {
+        setFormData((prev) => ({ ...prev, service: 'trainingEcommerce' }));
+      } else if (hash.includes('training-product')) {
+        setFormData((prev) => ({ ...prev, service: 'trainingProduct' }));
+      } else if (hash.includes('training-video')) {
+        setFormData((prev) => ({ ...prev, service: 'trainingVideo' }));
+      } else if (hash.includes('training-marketing')) {
+        setFormData((prev) => ({ ...prev, service: 'trainingMarketing' }));
+      }
+    }
+  }, []);
 
   const validate = (): boolean => {
     const newErrors: FormErrors = {};
@@ -44,10 +53,12 @@ export function ContactForm() {
     if (!formData.email.trim()) {
       newErrors.email = language === 'fr' ? 'L’email est requis' : 'Email is required';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = language === 'fr' ? 'Veuillez saisir un email valide' : 'Please enter a valid email';
+      newErrors.email =
+        language === 'fr' ? 'Veuillez saisir un email valide' : 'Please enter a valid email';
     }
-    if (!formData.description.trim()) {
-      newErrors.description = language === 'fr' ? 'Veuillez décrire votre projet' : 'Please describe your project';
+    if (!formData.message.trim()) {
+      newErrors.message =
+        language === 'fr' ? 'Veuillez décrire votre projet' : 'Please describe your request';
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -57,8 +68,8 @@ export function ContactForm() {
     e.preventDefault();
     if (!validate()) return;
     setIsSubmitting(true);
-    // Client-side simulation of message submission
-    await new Promise((resolve) => setTimeout(resolve, 1200));
+    // Simulate direct dispatch
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     setIsSubmitting(false);
     setIsSubmitted(true);
   };
@@ -75,10 +86,10 @@ export function ContactForm() {
 
   if (isSubmitted) {
     return (
-      <div className="card-surface rounded-2xl p-12 flex flex-col items-center justify-center text-center">
-        <CheckCircle2 className="w-16 h-16 text-brand-blue mb-6 animate-in zoom-in-50 duration-300" />
-        <h3 className="font-heading text-2xl font-bold text-zinc-900 dark:text-white mb-3">
-          {language === 'fr' ? 'Message Envoyé' : 'Message Sent'}
+      <div className="rounded-2xl p-8 sm:p-12 flex flex-col items-center justify-center text-center bg-white dark:bg-surface-100 border border-zinc-200 dark:border-zinc-800">
+        <CheckCircle2 className="w-14 h-14 text-brand-blue mb-4 animate-in zoom-in-50 duration-300" />
+        <h3 className="font-heading text-2xl font-bold text-zinc-900 dark:text-white mb-2">
+          {language === 'fr' ? 'Message Envoyé Avec Succès' : 'Message Sent Successfully'}
         </h3>
         <p className="text-zinc-600 dark:text-zinc-400 max-w-md text-sm leading-relaxed">
           {t.contact.form.successMessage}
@@ -86,32 +97,25 @@ export function ContactForm() {
         <button
           onClick={() => {
             setIsSubmitted(false);
-            setFormData({
-              name: '',
-              email: '',
-              company: '',
-              service: '',
-              description: '',
-              budget: '',
-              timeline: '',
-            });
+            setFormData({ name: '', email: '', service: '', message: '' });
           }}
-          className="mt-6 px-5 py-2 rounded-lg bg-zinc-100 dark:bg-surface-200 text-xs font-mono text-zinc-700 dark:text-zinc-300 hover:text-black dark:hover:text-white transition-colors"
+          className="mt-6 px-5 py-2.5 rounded-xl bg-zinc-100 dark:bg-surface-200 text-xs font-mono font-semibold text-zinc-700 dark:text-zinc-300 hover:text-black dark:hover:text-white transition-colors"
         >
-          {language === 'fr' ? 'Envoyer un autre message' : 'Send another inquiry'}
+          {language === 'fr' ? 'Envoyer une autre demande' : 'Send another inquiry'}
         </button>
       </div>
     );
   }
 
   const inputStyles =
-    'w-full bg-white dark:bg-surface-100 border border-zinc-300 dark:border-zinc-800 rounded-lg px-4 py-3 text-zinc-900 dark:text-white placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:border-brand-blue focus:ring-1 focus:ring-brand-blue/50 outline-none transition-all duration-200 text-sm shadow-sm';
+    'w-full bg-zinc-50 dark:bg-surface-200/60 border border-zinc-300 dark:border-zinc-700 rounded-xl px-4 py-3 text-zinc-900 dark:text-white placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:border-brand-blue focus:ring-1 focus:ring-brand-blue/50 outline-none transition-all duration-200 text-sm';
   const errorInputStyles = 'border-red-500 focus:border-red-500 focus:ring-red-500/50';
-  const labelStyles = 'block text-xs font-mono font-medium text-zinc-700 dark:text-zinc-300 mb-1.5 uppercase tracking-wider';
+  const labelStyles =
+    'block text-xs font-mono font-medium text-zinc-700 dark:text-zinc-300 mb-1.5 uppercase tracking-wider';
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-5" noValidate>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>
           <label htmlFor="name" className={labelStyles}>
             {t.contact.form.nameLabel} *
@@ -124,13 +128,8 @@ export function ContactForm() {
             onChange={handleChange}
             className={`${inputStyles} ${errors.name ? errorInputStyles : ''}`}
             placeholder={t.contact.form.namePlaceholder}
-            aria-describedby={errors.name ? 'name-error' : undefined}
           />
-          {errors.name && (
-            <p id="name-error" className="text-red-500 text-xs mt-1" role="alert">
-              {errors.name}
-            </p>
-          )}
+          {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
         </div>
 
         <div>
@@ -145,84 +144,73 @@ export function ContactForm() {
             onChange={handleChange}
             className={`${inputStyles} ${errors.email ? errorInputStyles : ''}`}
             placeholder={t.contact.form.emailPlaceholder}
-            aria-describedby={errors.email ? 'email-error' : undefined}
           />
-          {errors.email && (
-            <p id="email-error" className="text-red-500 text-xs mt-1" role="alert">
-              {errors.email}
-            </p>
-          )}
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <div>
-          <label htmlFor="company" className={labelStyles}>
-            {language === 'fr' ? 'Entreprise / Marque' : 'Company / Brand'}
-          </label>
-          <input
-            type="text"
-            id="company"
-            name="company"
-            value={formData.company}
-            onChange={handleChange}
-            className={inputStyles}
-            placeholder={language === 'fr' ? 'Votre organisation' : 'Your organization'}
-          />
-        </div>
-
-        <div>
-          <label htmlFor="service" className={labelStyles}>
-            {t.contact.form.serviceLabel}
-          </label>
-          <select
-            id="service"
-            name="service"
-            value={formData.service}
-            onChange={handleChange}
-            className={inputStyles}
-          >
-            <option value="">{t.contact.form.servicePlaceholder}</option>
-            <option value="marketing">{t.contact.form.serviceOptions.marketing}</option>
-            <option value="aiCreative">{t.contact.form.serviceOptions.aiCreative}</option>
-            <option value="webDev">{t.contact.form.serviceOptions.webDev}</option>
-            <option value="software">{t.contact.form.serviceOptions.software}</option>
-            <option value="other">{t.contact.form.serviceOptions.other}</option>
-          </select>
+          {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
         </div>
       </div>
 
       <div>
-        <label htmlFor="description" className={labelStyles}>
+        <label htmlFor="service" className={labelStyles}>
+          {t.contact.form.serviceLabel}
+        </label>
+        <select
+          id="service"
+          name="service"
+          value={formData.service}
+          onChange={handleChange}
+          className={inputStyles}
+        >
+          <option value="">{t.contact.form.servicePlaceholder}</option>
+          <optgroup label={language === 'fr' ? 'Services Professionnels' : 'Professional Services'}>
+            <option value="webDev">{t.contact.form.serviceOptions.webDev}</option>
+            <option value="marketing">{t.contact.form.serviceOptions.marketing}</option>
+            <option value="creative">{t.contact.form.serviceOptions.creative}</option>
+            <option value="automation">{t.contact.form.serviceOptions.automation}</option>
+          </optgroup>
+          <optgroup
+            label={language === 'fr' ? 'Programmes de Formation' : 'Training Programmes'}
+          >
+            <option value="trainingEcommerce">
+              {t.contact.form.serviceOptions.trainingEcommerce}
+            </option>
+            <option value="trainingProduct">
+              {t.contact.form.serviceOptions.trainingProduct}
+            </option>
+            <option value="trainingVideo">{t.contact.form.serviceOptions.trainingVideo}</option>
+            <option value="trainingMarketing">
+              {t.contact.form.serviceOptions.trainingMarketing}
+            </option>
+          </optgroup>
+          <option value="other">{t.contact.form.serviceOptions.other}</option>
+        </select>
+      </div>
+
+      <div>
+        <label htmlFor="message" className={labelStyles}>
           {t.contact.form.messageLabel} *
         </label>
         <textarea
-          id="description"
-          name="description"
-          value={formData.description}
+          id="message"
+          name="message"
+          value={formData.message}
           onChange={handleChange}
           rows={4}
-          className={`${inputStyles} resize-none ${errors.description ? errorInputStyles : ''}`}
+          className={`${inputStyles} resize-none ${errors.message ? errorInputStyles : ''}`}
           placeholder={t.contact.form.messagePlaceholder}
-          aria-describedby={errors.description ? 'desc-error' : undefined}
         />
-        {errors.description && (
-          <p id="desc-error" className="text-red-500 text-xs mt-1" role="alert">
-            {errors.description}
-          </p>
-        )}
+        {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message}</p>}
       </div>
 
-      <Button
-        variant="primary"
-        size="lg"
+      <button
         type="submit"
-        className="w-full mt-2"
         disabled={isSubmitting}
-        icon={<Send className="w-4 h-4" />}
+        className="w-full py-3.5 px-6 rounded-xl bg-brand-blue hover:bg-brand-blue-dark text-white font-semibold text-sm tracking-wide shadow-md shadow-brand-blue/20 hover:shadow-lg hover:shadow-brand-blue/30 transition-all flex items-center justify-center gap-2 mt-2 disabled:opacity-70 cursor-pointer"
       >
-        {isSubmitting ? t.contact.form.submittingButton : t.contact.form.submitButton}
-      </Button>
+        <span>
+          {isSubmitting ? t.contact.form.submittingButton : t.contact.form.submitButton}
+        </span>
+        <Send size={15} />
+      </button>
     </form>
   );
 }
